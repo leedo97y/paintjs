@@ -1,6 +1,7 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d"); // -> Context can control pixel's in canvas
 const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
 
 // => when you want to use Canvas, you need css-size and js-size both !! 
 canvas.width  =700;
@@ -46,6 +47,11 @@ function handleColorClick (event) {
   ctx.strokeStyle = color; // override color 
 }
 
+function hadleRangeChange (event) {
+  const size = event.target.value;
+  ctx.lineWidth = size; // override size
+}
+
 
 
 if (canvas) {
@@ -57,4 +63,13 @@ if (canvas) {
 
 // [ Creating Array ]
 // Colors - in Color add Event = by click, function name : handleColorClick
-Array.from(colors).forEach(color => color.addEventListener("click", handleColorClick));
+if (colors) {
+  Array.from(colors).forEach(color => 
+    color.addEventListener("click", handleColorClick)
+  );
+}
+
+
+if (range) {
+  range.addEventListener("input", hadleRangeChange);
+}
